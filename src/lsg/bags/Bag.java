@@ -91,15 +91,12 @@ public class Bag {
         bag.push(test);
         bag.push(new Sword());
         bag.push(new Hamburger());
+        System.out.println(bag.toString());
+        bag.pop(test);
+        System.out.println("Pop sur "+test.toString());
+        System.out.println();
+        System.out.println(bag.toString());
 
-        System.out.println("Sac 1 :");
-        System.out.println(bag.toString());
-        System.out.println("Sac 2 :");
-        System.out.println(bag2.toString());
         transfer(bag,bag2);
-        System.out.println("Sac 2 après transfert: ");
-        System.out.println(bag2.toString());
-        System.out.println("Sac 1 après transfert: ");
-        System.out.println(bag.toString());
     }
 }
