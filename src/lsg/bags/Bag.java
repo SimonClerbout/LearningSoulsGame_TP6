@@ -72,11 +72,10 @@ public class Bag {
     }
 
     public static void transfer(Bag from, Bag into){
-        Collectible[] tab = new Collectible[into.getItems().length];
-        for(Collectible item : tab){
-            if(item.getWeight()>into.getCapacity()-into.getWeight()){
-                break;
-            }
+        if(from == into){
+            return;
+        }
+        for(Collectible item: from.getItems()){
             into.push(item);
             if(into.contains(item)){
                 from.pop(item);
@@ -87,14 +86,20 @@ public class Bag {
     public static void main(String[] args) {
         DragonSlayerLeggings test = new DragonSlayerLeggings();
         SmallBag bag = new SmallBag();
+        SmallBag bag2 = new SmallBag();
         bag.push(new BlackWitchVeil());
         bag.push(test);
         bag.push(new Sword());
         bag.push(new Hamburger());
+
+        System.out.println("Sac 1 :");
         System.out.println(bag.toString());
-        bag.pop(test);
-        System.out.println("Pop sur "+test.toString());
-        System.out.println();
+        System.out.println("Sac 2 :");
+        System.out.println(bag2.toString());
+        transfer(bag,bag2);
+        System.out.println("Sac 2 après transfert: ");
+        System.out.println(bag2.toString());
+        System.out.println("Sac 1 après transfert: ");
         System.out.println(bag.toString());
     }
 }

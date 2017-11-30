@@ -232,19 +232,49 @@ public abstract class Character {
     public void equip(Weapon weapon){
         if(bag.contains(weapon)){
             this.weapon = weapon;
-            bag.pop(weapon);
+            this.pullOut(weapon);
+            System.out.println(" and equips it !");
         }
     }
 
     public void equip(Consumable consumable){
         if(bag.contains(consumable)){
             this.consumable = consumable;
-            bag.pop(consumable);
+            this.pullOut(consumable);
+            System.out.println(" and equips it !");
         }
     }
 
     public void consume(){
         this.use(consumable);
+    }
+
+    private Consumable fastUseFirst(Class <? extends Consumable> type){
+        for(Collectible item : bag.getItems()){
+            if(type.isInstance(item)){
+                this.use((Consumable)item);
+                if(((Consumable) item).getCapacity() == 0){
+                    pullOut(item);
+                }
+                return ((Consumable)item);
+            }
+        }
+        return null;
+    }
+
+    public Drink fastDrink(){
+        System.out.println(name +" drinks FAST :");
+        return (Drink)fastUseFirst(Drink.class);
+    }
+
+    public RepairKit fastRepair(){
+        System.out.println(name +" repairs FAST :");
+        return (RepairKit) fastUseFirst(RepairKit.class);
+    }
+
+    public Food fastEat(){
+        System.out.println(name +" eats FAST :");
+        return (Food)fastUseFirst(Food.class);
     }
 
     protected abstract float computeProtection();

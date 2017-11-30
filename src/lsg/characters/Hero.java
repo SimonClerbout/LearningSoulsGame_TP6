@@ -142,4 +142,16 @@ public class Hero extends Character {
         System.out.println(hero.armorToString());
     }
 
+    public void equip(ArmorItem item, int slot){
+        if(pullOut(item) != null) {
+            this.setArmorItem(item, slot);
+            System.out.println(" and equips it !");
+        }
+    }
+    public void equip(Ring ring, int slot){
+        if(pullOut(ring) != null) {
+            this.setRing(ring, slot);
+            System.out.println(" and equips it !");
+        }
+    }
 }
