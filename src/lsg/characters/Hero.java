@@ -74,7 +74,7 @@ public class Hero extends Character {
     }
 
     public String ringToString(){
-        String n = "RING ";
+        String n = "RINGS ";
         for(int i=0; i<MAX_RINGS; i++){
             if (rings[i] == null) {
                 n += format(" %2d:%-30s",i+1,"empty");
@@ -83,6 +83,18 @@ public class Hero extends Character {
             }
         }
         return (n +"TOTAL:"+getTotalBuff());
+    }
+
+    public void printRings(){
+        String n = "RINGS ";
+        for(int i=0; i<MAX_RINGS; i++){
+            if (rings[i] == null) {
+                n += format(" %2d:%-30s",i+1,"empty");
+            } else {
+                n +=format(" %2d:%-30s",i+1, rings[i].toString());
+            }
+        }
+        System.out.println(n);
     }
 
     public ArmorItem[] getArmorItems(){
@@ -135,13 +147,6 @@ public class Hero extends Character {
         return (this.getTotalBuff());
     }
 
-    public static void main(String[] args) {
-        Hero hero = new Hero();
-        hero.setArmorItem(new BlackWitchVeil(),1);
-        hero.setArmorItem(new RingedKnightArmor(),3);
-        System.out.println(hero.armorToString());
-    }
-
     public void equip(ArmorItem item, int slot){
         if(pullOut(item) != null) {
             this.setArmorItem(item, slot);
@@ -153,5 +158,12 @@ public class Hero extends Character {
             this.setRing(ring, slot);
             System.out.println(" and equips it !");
         }
+    }
+
+    public static void main(String[] args) {
+        Hero hero = new Hero();
+        hero.setArmorItem(new BlackWitchVeil(),1);
+        hero.setArmorItem(new RingedKnightArmor(),3);
+        System.out.println(hero.armorToString());
     }
 }

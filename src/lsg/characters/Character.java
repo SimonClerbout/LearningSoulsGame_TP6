@@ -7,6 +7,8 @@ import lsg.consumables.Consumable;
 import lsg.consumables.drinks.Drink;
 import lsg.consumables.food.Food;
 import lsg.consumables.repair.RepairKit;
+import lsg.exceptions.WeaponBrokenException;
+import lsg.exceptions.WeaponNullException;
 import lsg.helpers.Dice;
 import lsg.weapons.Weapon;
 
@@ -111,9 +113,13 @@ public abstract class Character {
         return(this.getLife()>0);
     }
 
-    private int attackWith(Weapon weapon){
-        if (weapon.isBroken())
-            return 0;
+    private int attackWith(Weapon weapon) throws WeaponNullException, WeaponBrokenException {
+        if (weapon == null){
+            throw new WeaponNullException();
+        }
+        if (weapon.isBroken()) {
+            throw new WeaponBrokenException(weapon);
+        }
         else{
             int pourcent = dice.roll();
             weapon.use();
@@ -137,7 +143,7 @@ public abstract class Character {
         }
     }
 
-    public int attack(){
+    public int attack() throws WeaponNullException, WeaponBrokenException {
         return (attackWith(weapon));
     }
 
@@ -181,12 +187,19 @@ public abstract class Character {
                 this.drink((Drink) consumable);
             }
             else {
-                this.repairWeaponWith((RepairKit) consumable);
+                try{
+                    this.repairWeaponWith((RepairKit) consumable);
+                }catch (WeaponNullException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    private void repairWeaponWith(RepairKit kit){
+    private void repairWeaponWith(RepairKit kit) throws WeaponNullException {
+        if (weapon == null){
+            throw new WeaponNullException();
+        }
         System.out.println(name + " repairs " + weapon.toString() + " with " + kit.toString());
         weapon.repairWith(kit);
     }
@@ -207,6 +220,10 @@ public abstract class Character {
 
     public void printBag(){
         System.out.println("BAG : "+bag.toString());
+    }
+
+    public void printConsumable(){
+        System.out.println("Consumable : "+consumable.toString());
     }
 
     public int getBagCapacity(){
