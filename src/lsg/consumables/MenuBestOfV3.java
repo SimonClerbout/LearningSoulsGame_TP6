@@ -8,29 +8,41 @@ import lsg.consumables.food.Hamburger;
 
 import java.util.HashSet;
 
+/**
+ * Created by sclerbou on 09/11/17.
+ */
 public class MenuBestOfV3 extends HashSet<Consumable> {
 
     public MenuBestOfV3(){
+
         this.add(new Hamburger());
         this.add(new Wine());
         this.add(new Americain());
         this.add(new Coffee());
         this.add(new Whisky());
+
     }
+
 
     @Override
     public String toString() {
-        String str = getClass().getSimpleName()+" :\n";
-        int i = 0;
-        for(Consumable aff :this){
-            str += i+1 + " : " + aff.toString() +"\n";
+
+        String str = getClass().getSimpleName() + " :\n";
+        int i = 1;
+
+        for(Consumable consumable : this){
+
+            str += i + " : " + consumable + "\n";
             i++;
         }
+
         return str;
+
+    }
+    // hashSet ne garantie pas la conservation de l'ordre.
+    public static void main(String[] args) {
+        MenuBestOfV3 menu = new MenuBestOfV3() ;
+        System.out.println(menu.toString());
     }
 
-    public static void main(String[] args) {
-        MenuBestOfV3 m1 = new MenuBestOfV3();
-        System.out.println(m1.toString());
-    }
 }

@@ -1,21 +1,30 @@
 package lsg.consumables.repair;
 
 import lsg.consumables.Consumable;
-import lsg.weapons.Weapon;
 
+import static lsg.weapons.Weapon.DURABILITY_STAT_STRING;
+
+/**
+ * Created by sclerbou on 09/11/17.
+ */
 public class RepairKit extends Consumable{
-    public RepairKit(){
-        super("Repair Kit",10, Weapon.DURABILITY_STAT_STRING);
+
+
+    public RepairKit() {
+        super("Repair Kit", 10, DURABILITY_STAT_STRING);
     }
 
     public int use(){
-        int val = 1;
-        if(super.getCapacity()>0){
-            super.setCapacity(super.getCapacity()-1);
+
+        int stock = 0;
+        if(this.getCapacity() > 0) {
+
+            this.setCapacity(this.getCapacity() - 1);
+            stock = 1;
+
         }
-        else{
-            val = 0;
-        }
-        return val;
+
+        return stock;
+
     }
 }

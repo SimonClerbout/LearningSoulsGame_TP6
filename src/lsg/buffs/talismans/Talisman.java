@@ -15,6 +15,21 @@ public class Talisman extends BuffItem {
 		this.start = start ;
 		this.end = end ;
 	}
+
+
+	public int getTalismanPower(){
+
+		return this.start;
+
+
+	}
+
+	protected void setTalismanPower(int start, int end){
+
+		this.start = start;
+		this.end = end;
+
+	}
 	
 	@Override
 	public float computeBuffValue() {

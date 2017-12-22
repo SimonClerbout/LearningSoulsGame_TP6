@@ -12,10 +12,6 @@ public abstract class Ring extends BuffItem {
 		super(name) ;
 		this.power = power ;
 	}
-
-	public int getRingPower() {
-		return power;
-	}
 	
 	public void setHero(Hero hero) {
 		this.hero = hero;
@@ -23,6 +19,13 @@ public abstract class Ring extends BuffItem {
 	
 	public Hero getHero() {
 		return hero;
+	}
+
+
+	protected void setRingPower(int power){
+
+		this.power = power;
+
 	}
 	
 }

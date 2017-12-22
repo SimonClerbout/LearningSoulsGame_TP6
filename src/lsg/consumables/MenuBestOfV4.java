@@ -7,33 +7,47 @@ import lsg.consumables.food.Americain;
 import lsg.consumables.food.Hamburger;
 import lsg.consumables.repair.RepairKit;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-public class MenuBestOfV4 extends LinkedHashSet<Consumable> {
+/**
+ * Created by sclerbou on 09/11/17.
+ */
+public class MenuBestOfV4 extends LinkedHashSet<Consumable>{
+
+    RepairKit kit;
 
     public MenuBestOfV4(){
+
+        kit = new RepairKit();
         this.add(new Hamburger());
         this.add(new Wine());
         this.add(new Americain());
         this.add(new Coffee());
         this.add(new Whisky());
-        this.add(new RepairKit());
+
     }
+
 
     @Override
     public String toString() {
-        String str = getClass().getSimpleName()+" :\n";
-        int i = 0;
-        for(Consumable aff :this){
-            str += i+1 + " : " + aff.toString() +"\n";
+
+        String str = getClass().getSimpleName() + " :\n";
+        int i = 1;
+
+        for(Consumable consumable : this){
+
+            str += i + " : " + consumable + "\n";
             i++;
         }
+
         return str;
+
+    }
+    // hashSet ne garantie pas la conservation de l'ordre.
+    public static void main(String[] args) {
+        MenuBestOfV4 menu = new MenuBestOfV4() ;
+        System.out.println(menu.toString());
     }
 
-    public static void main(String[] args) {
-        MenuBestOfV4 m1 = new MenuBestOfV4();
-        System.out.println(m1.toString());
-    }
+
 }

@@ -1,7 +1,13 @@
 package lsg.consumables.food;
 
+
+/**
+ * Created by sclerbou on 07/11/17.
+ */
 public class Americain extends Food {
-    public Americain(){
-        super("Friterie 2000's Best of the Best",3000);
+
+    public Americain() {
+        super("Friterie 2000's Best of the Best", 3000);
     }
+
 }
